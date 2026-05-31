@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PulseOps SaaS Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">P</span>
+          <div>
+            <strong>PulseOps</strong>
+            <small>Growth OS</small>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-item active" data-view="overview" type="button">
+            <span class="icon" aria-hidden="true">⌂</span>
+            <span>Overview</span>
+          </button>
+          <button class="nav-item" data-view="analytics" type="button">
+            <span class="icon" aria-hidden="true">◌</span>
+            <span>Analytics</span>
+          </button>
+          <button class="nav-item" data-view="billing" type="button">
+            <span class="icon" aria-hidden="true">$</span>
+            <span>Billing</span>
+          </button>
+          <button class="nav-item" data-view="team" type="button">
+            <span class="icon" aria-hidden="true">◎</span>
+            <span>Team</span>
+          </button>
+          <button class="nav-item" data-view="automation" type="button">
+            <span class="icon" aria-hidden="true">⚙</span>
+            <span>Automation</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="plan-meter">
+            <div class="meter-head">
+              <span>Usage</span>
+              <strong id="usageLabel">68%</strong>
+            </div>
+            <div class="meter-track"><span id="usageBar"></span></div>
+          </div>
+          <button class="outline-btn full" id="upgradeBtn" type="button">Upgrade plan</button>
+        </div>
+      </aside>
+
+      <div class="content">
+        <header class="topbar">
+          <button class="icon-btn mobile-only" id="menuBtn" type="button" aria-label="Open menu">☰</button>
+          <div class="search-wrap">
+            <span aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search" placeholder="Search customers, invoices, tasks" />
+          </div>
+          <div class="top-actions">
+            <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">◐</button>
+            <button class="icon-btn" id="notifyBtn" type="button" aria-label="Notifications">
+              !
+              <span class="notification-dot" id="notificationDot"></span>
+            </button>
+            <button class="profile-btn" id="profileBtn" type="button" aria-label="Open account menu">
+              <span>OA</span>
+            </button>
+          </div>
+        </header>
+
+        <main>
+          <section class="hero-band">
+            <div>
+              <p class="eyebrow" id="viewEyebrow">Executive command center</p>
+              <h1 id="viewTitle">Animate revenue, users, and operations in one place.</h1>
+              <p id="viewCopy">Track every moving part of your SaaS business with live filters, animated metrics, and fast team workflows.</p>
+            </div>
+            <div class="hero-actions">
+              <button class="primary-btn" id="newReportBtn" type="button">New report</button>
+              <button class="outline-btn" id="exportBtn" type="button">Export CSV</button>
+            </div>
+          </section>
+
+          <section class="control-strip" aria-label="Dashboard controls">
+            <div class="segmented" role="group" aria-label="Date range">
+              <button class="segment active" data-range="7" type="button">7D</button>
+              <button class="segment" data-range="30" type="button">30D</button>
+              <button class="segment" data-range="90" type="button">90D</button>
+            </div>
+            <label class="select-label">
+              Workspace
+              <select id="workspaceSelect">
+                <option value="northstar">Northstar AI</option>
+                <option value="atlas">Atlas CRM</option>
+                <option value="orbit">Orbit Finance</option>
+              </select>
+            </label>
+            <label class="toggle">
+              <input id="liveToggle" type="checkbox" checked />
+              <span></span>
+              Live animation
+            </label>
+          </section>
+
+          <section class="kpi-grid" aria-label="Key metrics">
+            <article class="kpi-card">
+              <span class="kpi-icon revenue" aria-hidden="true">$</span>
+              <p>Revenue</p>
+              <strong id="revenueValue">$128.4K</strong>
+              <small id="revenueDelta">+18.2% vs last period</small>
+            </article>
+            <article class="kpi-card">
+              <span class="kpi-icon users" aria-hidden="true">◎</span>
+              <p>Active users</p>
+              <strong id="usersValue">42,810</strong>
+              <small id="usersDelta">+9.7% vs last period</small>
+            </article>
+            <article class="kpi-card">
+              <span class="kpi-icon churn" aria-hidden="true">↘</span>
+              <p>Churn risk</p>
+              <strong id="churnValue">2.8%</strong>
+              <small id="churnDelta">-1.1% improvement</small>
+            </article>
+            <article class="kpi-card">
+              <span class="kpi-icon tickets" aria-hidden="true">✓</span>
+              <p>Resolved tickets</p>
+              <strong id="ticketsValue">1,294</strong>
+              <small id="ticketsDelta">+24.4% faster</small>
+            </article>
+          </section>
+
+          <section class="dashboard-grid">
+            <article class="panel chart-panel">
+              <div class="panel-head">
+                <div>
+                  <h2>Revenue velocity</h2>
+                  <p id="chartCaption">Daily recurring revenue across selected workspace.</p>
+                </div>
+                <button class="icon-btn" id="shuffleChartBtn" type="button" aria-label="Refresh chart">↻</button>
+              </div>
+              <div class="bar-chart" id="barChart" aria-label="Animated revenue chart"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <h2>Automation health</h2>
+                  <p>Flows running across your customer lifecycle.</p>
+                </div>
+                <button class="outline-btn small" id="pauseAllBtn" type="button">Pause all</button>
+              </div>
+              <div class="flow-list" id="flowList"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <h2>Pipeline</h2>
+                  <p>Deals ranked by momentum.</p>
+                </div>
+                <button class="outline-btn small" id="addDealBtn" type="button">Add deal</button>
+              </div>
+              <div class="pipeline" id="pipelineList"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <h2>Team tasks</h2>
+                  <p>Click to complete priorities.</p>
+                </div>
+                <button class="outline-btn small" id="clearDoneBtn" type="button">Clear done</button>
+              </div>
+              <div class="task-list" id="taskList"></div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+    <section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+      <div class="modal-card">
+        <button class="icon-btn modal-close" id="modalCloseBtn" type="button" aria-label="Close">×</button>
+        <h2 id="modalTitle">Action</h2>
+        <p id="modalText"></p>
+        <div class="modal-actions" id="modalActions"></div>
+      </div>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
